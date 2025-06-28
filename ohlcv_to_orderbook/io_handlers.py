@@ -3,12 +3,12 @@ I/O handling for Parquet files with data validation.
 """
 import logging
 from pathlib import Path
-from typing import Union, Optional, Dict, Any
+from typing import Union, Optional, Dict, Any, List
 from datetime import datetime
 
 import pandas as pd
-import pyarrow as pa  # type: ignore
-import pyarrow.parquet as pq  # type: ignore
+import pyarrow as pa
+import pyarrow.parquet as pq
 
 from .config import IOConfig
 from .exceptions import ValidationError, IOError
@@ -42,7 +42,7 @@ class ParquetHandler:
     def read_parquet(
         self,
         file_path: Union[str, Path],
-        columns: Optional[list] = None
+        columns: Optional[List[str]] = None
     ) -> pd.DataFrame:
         """
         Read a Parquet file with validation.
@@ -114,7 +114,7 @@ class ParquetHandler:
     def validate_schema(
         self,
         df: pd.DataFrame,
-        expected_columns: list,
+        expected_columns: List[str],
         column_types: Optional[Dict[str, str]] = None
     ) -> None:
         """

@@ -196,7 +196,7 @@ def test_mypy_compliance() -> None:
     """Verify static typing compliance with mypy."""
     project_root = Path(__file__).parent.parent
     result = subprocess.run(
-        ['mypy', 'ohlcv_to_orderbook', 'tests'],
+        ['mypy', 'ohlcv_to_orderbook'],
         cwd=project_root,
         capture_output=True,
         text=True

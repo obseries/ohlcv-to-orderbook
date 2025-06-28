@@ -3,7 +3,7 @@ Module for reconstructing OHLCV data from level 1 orderbook.
 """
 import argparse
 import logging
-from typing import Optional, Dict
+from typing import Optional, Dict, Any
 
 import numpy as np
 import pandas as pd
@@ -173,7 +173,7 @@ class OHLCVGenerator:
         """
         return self.generate_ohlcv_data(orderbook_df, points_per_bar)
 
-    def generate_summary_stats(self, ohlcv_df: pd.DataFrame) -> Dict:
+    def generate_summary_stats(self, ohlcv_df: pd.DataFrame) -> Dict[str, Any]:
         """
         Generate summary statistics for OHLCV data.
 

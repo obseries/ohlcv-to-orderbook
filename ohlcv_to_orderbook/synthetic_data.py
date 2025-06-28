@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, Any
 
 import numpy as np
 import pandas as pd
@@ -43,7 +43,7 @@ class OHLCVGenerator:
         self,
         num_bars: int,
         bar_interval: str = '1min'
-    ) -> Tuple[pd.DataFrame, Dict]:
+    ) -> Tuple[pd.DataFrame, Dict[str, Any]]:
         """
         Generate synthetic OHLCV bars with realistic price movement.
 
@@ -150,7 +150,7 @@ def generate_test_data(
     volume_mean: float = 1000.0,
     volume_std: float = 200.0,
     random_seed: Optional[int] = None
-) -> Tuple[pd.DataFrame, Dict]:
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """
     Generate test OHLCV data and save to file.
 
@@ -204,7 +204,7 @@ def generate_synthetic_data(
     volatility: float = 0.02,
     volume_mean: float = 1000.0,
     random_seed: Optional[int] = None
-) -> Tuple[pd.DataFrame, Dict]:
+) -> Tuple[pd.DataFrame, Dict[str, Any]]:
     """
     Genera dati OHLCV sintetici con movimenti di prezzo realistici.
 

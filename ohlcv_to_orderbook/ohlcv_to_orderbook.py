@@ -136,7 +136,7 @@ class OrderbookGenerator:
         })
         return self._estimate_price_path(row)
 
-    def _estimate_price_path(self, row: pd.Series) -> npt.NDArray[np.float64]:
+    def _estimate_price_path(self, row: "pd.Series[Any]") -> npt.NDArray[np.float64]:
         """
         Estimate the price path within an OHLCV bar.
 
@@ -288,7 +288,7 @@ class OrderbookGenerator:
 
     def _generate_bar_points(
         self,
-        row: pd.Series,
+        row: "pd.Series[Any]",
         points_per_bar: int,
         timestamp_base: Any
     ) -> List[Dict[str, Any]]:
@@ -340,7 +340,7 @@ class OrderbookGenerator:
 
         return points
 
-    def _calculate_volatility(self, row: pd.Series) -> float:
+    def _calculate_volatility(self, row: "pd.Series[Any]") -> float:
         """
         Calculate volatility for an OHLCV bar.
 
@@ -650,7 +650,7 @@ class OrderbookValidator:
                 print(f"Error saving report: {e}")
         return report_text
 
-    def run_full_validation(self, original_ohlcv_df: pd.DataFrame, orderbook_df: pd.DataFrame, points_per_bar: int = 4, report_path: Optional[str] = None) -> Tuple[bool, Dict, str]:
+    def run_full_validation(self, original_ohlcv_df: pd.DataFrame, orderbook_df: pd.DataFrame, points_per_bar: int = 4, report_path: Optional[str] = None) -> Tuple[bool, Dict[str, Any], str]:
         """
         Run a full orderbook validation
 

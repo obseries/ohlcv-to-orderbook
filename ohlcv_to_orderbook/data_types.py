@@ -12,7 +12,7 @@ class ValidationResult:
     warnings: List[str]
     errors: List[str]
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Ensure warnings and errors are lists."""
         if self.warnings is None:
             self.warnings = []
@@ -28,7 +28,7 @@ class ValidationConfig:
     min_spread: float = 0.0001  # 0.01% minimum spread
     max_spread: float = 0.05  # 5% maximum spread
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Validate configuration values."""
         if self.price_tolerance < 0:
             raise ValueError("Price tolerance must be non-negative")

@@ -1,12 +1,12 @@
 """
 Custom exceptions for the project.
 """
-from typing import Optional
+from typing import Optional, Dict, Any
 
 
 class BaseError(Exception):
     """Base exception class for the project."""
-    def __init__(self, message: str, details: Optional[dict] = None):
+    def __init__(self, message: str, details: Optional[Dict[str, Any]] = None):
         super().__init__(message)
         self.details = details or {}
 

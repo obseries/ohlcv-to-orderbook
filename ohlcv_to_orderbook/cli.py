@@ -4,7 +4,7 @@ Command Line Interface for OHLCV to Orderbook conversion.
 import argparse
 import sys
 from pathlib import Path
-from typing import Optional
+from typing import Optional, List
 
 from .config import OrderbookConfig
 from .data_types import ValidationConfig
@@ -17,7 +17,7 @@ from .exceptions import ValidationError, ConversionError
 class CLIRunner:
     """Command line interface runner for OHLCV-Orderbook conversions."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.parquet_handler = ParquetHandler()
 
     def create_parser(self) -> argparse.ArgumentParser:
@@ -284,7 +284,7 @@ Examples:
             print(f"Unexpected error: {e}")
             sys.exit(1)
 
-    def run(self, args: Optional[list] = None) -> None:
+    def run(self, args: Optional[List[str]] = None) -> None:
         """Run the CLI with the given arguments."""
         parser = self.create_parser()
         parsed_args = parser.parse_args(args)

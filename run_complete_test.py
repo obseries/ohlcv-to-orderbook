@@ -17,6 +17,7 @@ from ohlcv_to_orderbook.config import OrderbookConfig
 from ohlcv_to_orderbook.ohlcv_to_orderbook import OrderbookGenerator, OrderbookValidator
 from ohlcv_to_orderbook.orderbook_to_ohlcv import OHLCVGenerator
 from ohlcv_to_orderbook.synthetic_data import generate_test_data
+from ohlcv_to_orderbook.data_types import ValidationConfig
 
 
 def print_header(title: str):
@@ -38,7 +39,7 @@ def test_basic_functionality():
     """Test basic functionality."""
     print_header("TEST FUNZIONALITÀ DI BASE")
 
-    results = {"passed": 0, "failed": 0, "details": []}
+    results: Dict[str, int] = {"passed": 0, "failed": 0}
 
     try:
         # Test 1: Generazione dati sintetici
@@ -96,22 +97,28 @@ def test_basic_functionality():
 
         # Test 5: Validazione accuratezza
         print("\n5. Test validazione accuratezza...")
-        validator = OrderbookValidator(tolerance_percentage=0.5)
+        validation_config = ValidationConfig(price_tolerance=0.005)  # 0.5% tolerance
+        validator = OrderbookValidator(config=validation_config)
 
         # Confronta i prezzi
         price_errors = 0
         for col in ['open', 'high', 'low', 'close']:
-            diff_pct = abs((reconstructed_df[col] - df[col]) / df[col] * 100)
-            max_diff = diff_pct.max()
+            diff_pct = ((reconstructed_df[col] - df[col]) / df[col] * 100).abs()
+            max_diff = float(diff_pct.max())
             if max_diff > 0.5:
                 price_errors += 1
 
         # Confronta i volumi
-        vol_diff_pct = abs((reconstructed_df['volume'] - df['volume']) / df['volume'] * 100)
-        max_vol_diff = vol_diff_pct.max()
+        vol_diff_pct = ((reconstructed_df['volume'] - df['volume']) / df['volume'] * 100).abs()
+        max_vol_diff = float(vol_diff_pct.max())
 
         success = price_errors == 0 and max_vol_diff < 30.0
-        details = f"Max diff prezzi: {max([abs((reconstructed_df[col] - df[col]) / df[col] * 100).max() for col in ['open', 'high', 'low', 'close']]):.3f}%, Max diff volume: {max_vol_diff:.1f}%"
+        max_price_diffs = []
+        for col in ['open', 'high', 'low', 'close']:
+            diff_pct = ((reconstructed_df[col] - df[col]) / df[col] * 100).abs()
+            max_price_diffs.append(float(diff_pct.max()))
+        max_price_diff = max(max_price_diffs)
+        details = f"Max diff prezzi: {max_price_diff:.3f}%, Max diff volume: {max_vol_diff:.1f}%"
 
         print_test_result("Validazione accuratezza", success, details)
         if success:
@@ -135,7 +142,7 @@ def test_performance_scalability():
     """Test performance and scalability."""
     print_header("TEST PERFORMANCE E SCALABILITÀ")
 
-    results = {"passed": 0, "failed": 0, "details": []}
+    results: Dict[str, int] = {"passed": 0, "failed": 0}
 
     try:
         # Test con dataset più grandi
@@ -182,7 +189,7 @@ def test_edge_cases():
     """Test di casi limite."""
     print_header("TEST CASI LIMITE")
 
-    results = {"passed": 0, "failed": 0, "details": []}
+    results: Dict[str, int] = {"passed": 0, "failed": 0}
 
     try:
         # Test 1: Dati con valori estremi
@@ -237,7 +244,7 @@ def main():
     """Esegue tutti i test."""
     print_header("AVVIO TEST COMPLETO SISTEMA OHLCV-TO-ORDERBOOK")
 
-    total_results = {"passed": 0, "failed": 0}
+    total_results: Dict[str, int] = {"passed": 0, "failed": 0}
 
     # Esegui tutti i test
     test_functions = [
@@ -255,23 +262,25 @@ def main():
             print(f"Errore nell'esecuzione di {test_func.__name__}: {str(e)}")
             total_results["failed"] += 1
 
-    # Risultati finali
+    # Stampa risultati finali
     print_header("RISULTATI FINALI")
     total_tests = total_results["passed"] + total_results["failed"]
     success_rate = (total_results["passed"] / total_tests * 100) if total_tests > 0 else 0
 
-    print(f"Test eseguiti: {total_tests}")
-    print(f"Test passati: {total_results['passed']} ✅")
-    print(f"Test falliti: {total_results['failed']} ❌")
-    print(f"Tasso di successo: {success_rate:.1f}%")
+    print(f"\n📊 STATISTICHE COMPLETE:")
+    print(f"   Test eseguiti: {total_tests}")
+    print(f"   Test passati: {total_results['passed']} ✅")
+    print(f"   Test falliti: {total_results['failed']} ❌")
+    print(f"   Tasso di successo: {success_rate:.1f}%")
 
     if total_results["failed"] == 0:
-        print("\n🎉 TUTTI I TEST SONO PASSATI CON SUCCESSO!")
+        print(f"\n🎉 TUTTI I TEST SONO PASSATI! Il sistema è funzionante.")
         return 0
     else:
-        print(f"\n⚠️  {total_results['failed']} TEST FALLITI")
+        print(f"\n⚠️  ALCUNI TEST SONO FALLITI. Verificare i dettagli sopra.")
         return 1
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    exit_code = main()
+    sys.exit(exit_code)

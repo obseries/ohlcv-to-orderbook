@@ -3,8 +3,8 @@
 [![PyPI version](https://badge.fury.io/py/ohlcv-to-orderbook.svg)](https://badge.fury.io/py/ohlcv-to-orderbook)
 [![Python](https://img.shields.io/pypi/pyversions/ohlcv-to-orderbook.svg)](https://pypi.org/project/ohlcv-to-orderbook/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://github.com/luca/ohlcv-to-orderbook/workflows/CI/badge.svg)](https://github.com/obseries/ohlcv-to-orderbook/actions)
-[![Coverage Status](https://codecov.io/gh/luca/ohlcv-to-orderbook/branch/main/graph/badge.svg)](https://codecov.io/gh/luca/ohlcv-to-orderbook)
+[![Build Status](https://github.com/obseries/ohlcv-to-orderbook/workflows/CI/badge.svg)](https://github.com/obseries/ohlcv-to-orderbook/actions)
+[![Coverage Status](https://codecov.io/gh/obseries/ohlcv-to-orderbook/branch/main/graph/badge.svg)](https://codecov.io/gh/obseries/ohlcv-to-orderbook)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A Python library for converting OHLCV (Open, High, Low, Close, Volume) data to synthetic Level 1 orderbook representation and vice versa, designed for financial data processing and validation.

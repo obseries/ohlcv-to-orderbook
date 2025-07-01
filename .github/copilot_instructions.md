@@ -7,7 +7,7 @@ Questo progetto converte dati OHLCV (Open, High, Low, Close, Volume) in file Par
 
 **Fase 1: Setup e struttura del progetto** ✅
 - Creata la struttura delle cartelle (`ohlcv_to_orderbook/`, `tests/`).
-- Inizializzato ambiente Python 3.8+ con dipendenze (`pandas`, `pyarrow`, `pytest`).
+- Inizializzato ambiente Python 3.8+ con dipendenze (`pandas`, `pyarrow`, `pytest`) utilizzando `uv` come gestore di ambiente e pacchetti.
 - Configurato `pyproject.toml` per la gestione del progetto.
 
 **Fase 2: Implementazione conversione OHLCV → Orderbook** ✅
@@ -209,3 +209,32 @@ pytest --cov=ohlcv_to_orderbook --cov-report=html tests/
 - **Type safety**: Completa tipizzazione con mypy
 - **Performance**: Ottimizzato per dataset di grandi dimensioni
 - **Memory efficiency**: Gestione efficiente della memoria con chunking per file grandi
+
+## Python Environment Management
+- **Required**: `uv` package manager for Python
+- Use `uv` for environment creation, package installation and dependency management
+- Preferred over pip/venv for improved performance and dependency resolution
+- Required for consistent environment setup across all development phases
+**Basic uv Commands**:
+```bash
+# Install uv
+pip install uv
+# Create a new virtual environment
+uv venv
+# Activate the environment (macOS/Linux)
+source .venv/bin/activate
+# Install dependencies
+uv pip install -r requirements.txt
+# Install a package
+uv pip install package_name
+# Install development dependencies
+uv pip install -e ".[dev]"
+# Export dependencies to requirements.txt
+uv pip freeze > requirements.txt
+```
+**Key uv Benefits**:
+- Significantly faster than pip (10-100x)
+- Reliable dependency resolution
+- Reproducible environments
+- Compatible with standard Python tooling
+- Improved caching and parallel downloads

@@ -46,7 +46,7 @@ Questo progetto converte dati OHLCV (Open, High, Low, Close, Volume) in file Par
 - Aggiornato `copilot_instructions.md` con dettagli implementativi.
 - Tutte le istruzioni e commenti nel codice sono in inglese.
 
-**Fase 10: Interfaccia Command Line (CLI)** 🔄
+**Fase 10: Interfaccia Command Line (CLI)** ✅
 - Creare classe `CLIRunner` in `ohlcv_to_orderbook/cli.py` per esecuzione da riga di comando.
 - Supportare conversioni bidirezionali con parametri configurabili.
 - Implementare argparse per gestione argomenti e opzioni CLI.
@@ -55,7 +55,7 @@ Questo progetto converte dati OHLCV (Open, High, Low, Close, Volume) in file Par
 - aggiorna l'istruzione d'uso nel `README.md` per includere la CLI.
 - crea un test specifico per la CLI in `tests/test_cli.py`.
 
-**Fase 11: Pubblicazione su PyPI** 🔄
+**Fase 11: Pubblicazione su PyPI** ✅
 - Preparare il pacchetto per la pubblicazione su PyPI.
 - Aggiornare `pyproject.toml` con metadata per PyPI.
 - Testare l'installazione del pacchetto da PyPI.

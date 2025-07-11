@@ -9,7 +9,7 @@ description = "Convert OHLCV data to order book data and vice versa"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Luca Forni", email = "obseries@outlook.com"}
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -21,6 +21,7 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 requires-python = ">=3.8"
 dependencies = [
@@ -42,9 +43,9 @@ dev = [
 ohlcv-to-orderbook = "ohlcv_to_orderbook.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/yourusername/ohlcv-to-orderbook"
-Repository = "https://github.com/yourusername/ohlcv-to-orderbook"
-Issues = "https://github.com/yourusername/ohlcv-to-orderbook/issues"
+Homepage = "https://github.com/obseries/ohlcv-to-orderbook"
+Repository = "https://github.com/obseries/ohlcv-to-orderbook"
+Issues = "https://github.com/obseries/ohlcv-to-orderbook/issues"
 
 [tool.setuptools_scm]
 write_to = "ohlcv_to_orderbook/_version.py"

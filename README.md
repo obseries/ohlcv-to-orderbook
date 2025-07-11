@@ -249,9 +249,9 @@ The generated orderbook data is a pandas DataFrame with:
 
 - `timestamp`: Unix timestamp (int)
 - `bid_price`: Best bid price (float)
-- `bid_volume`: Best bid volume (float)
+- `bid_size`: Best bid volume (float)
 - `ask_price`: Best ask price (float)
-- `ask_volume`: Best ask volume (float)
+- `ask_size`: Best ask volume (float)
 
 ## Algorithm Details
 

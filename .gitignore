@@ -202,3 +202,4 @@ tmp/
 test_data/
 sample_data/
 /.python-version
+/ohlcv_to_orderbook/_version.py
